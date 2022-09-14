@@ -36,7 +36,7 @@ def vacanci_counter(url, secret_token):
 if __name__ == "__main__":
     load_dotenv()
     secret_token = os.environ['SUPERJOB_TOKEN']
-    url = os.environ['SUPERJOB_URL']
+    url = "https://api.superjob.ru/2.0/vacancies/"
     title = "Superjob"
     is_hh = False
     print(tableter(vacanci_counter(url, secret_token), title))

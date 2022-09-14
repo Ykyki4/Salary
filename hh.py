@@ -1,6 +1,4 @@
 from helpers import *
-from dotenv import load_dotenv
-import os
 
 
 def vacanci_counter(url):
@@ -33,8 +31,7 @@ def vacanci_counter(url):
 
 
 if __name__ == "__main__":
-    load_dotenv()
     title = "HeadHunter Moscow"
     is_hh = True
-    url = os.environ['HH_URL']
+    url = "https://api.hh.ru/vacancies"
     print(tableter(vacanci_counter(url), title))
