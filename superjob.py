@@ -34,9 +34,8 @@ def count_vacancy_salary(url, secret_token):
                 salary_to = vacancy["payment_to"]
                 language_salaries.append(
                     predict_rub_salary(salary_from=salary_from, salary_to=salary_to))
-        if len(language_salaries) == 0:
-            continue
-        average_salary = sum(language_salaries) // len(language_salaries)
+        if len(language_salaries) != 0:
+            average_salary = sum(language_salaries) // len(language_salaries)
 
         average_languages_salaries[language] = {
             "vacancies_found": superjob_api_response["total"],
