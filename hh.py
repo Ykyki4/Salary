@@ -41,6 +41,5 @@ def count_vacancy_salary(url):
 
 if __name__ == "__main__":
     title = "HeadHunter Moscow"
-    is_hh = True
     url = "https://api.hh.ru/vacancies"
     print(make_table(count_vacancy_salary(url), title))

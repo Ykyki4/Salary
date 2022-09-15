@@ -50,5 +50,4 @@ if __name__ == "__main__":
     secret_token = os.environ['SUPERJOB_TOKEN']
     url = "https://api.superjob.ru/2.0/vacancies/"
     title = "Superjob"
-    is_hh = False
     print(make_table(count_vacancy_salary(url, secret_token), title))
