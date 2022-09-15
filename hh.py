@@ -21,18 +21,15 @@ def count_vacancy_salary(url):
             response_json.raise_for_status()
             hh_api_response = response_json.json()
             for vacancy in hh_api_response["items"]:
-                if vacancy["salary"] is None:
-                    continue
-                salary_to = vacancy["salary"]["to"]
-                salary_from = vacancy["salary"]["from"]
-                language_salaries.append(
-                    predict_rub_salary(salary_from=salary_from, salary_to=salary_to))
+                if vacancy["salary"]:
+                    salary_to = vacancy["salary"]["to"]
+                    salary_from = vacancy["salary"]["from"]
+                    language_salaries.append(
+                        predict_rub_salary(salary_from=salary_from, salary_to=salary_to))
             page += 1
-            print(language_salaries)
         if len(language_salaries) == 0:
             continue
         average_salary = sum(language_salaries) // len(language_salaries)
-        print(average_salary)
 
         average_languages_salaries[language] = {
             "vacancies_found": hh_api_response["found"],
