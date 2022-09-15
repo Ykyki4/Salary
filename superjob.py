@@ -25,11 +25,11 @@ def count_vacancy_salary(url, secret_token):
                         "page": page
                     }
             page += 1
-            response = requests.get(url, params=params, headers=headers)
-            response.raise_for_status()
-            response_json = response.json()
-            is_more = response_json["more"]
-            for vacancy in response_json["objects"]:
+            response_json = requests.get(url, params=params, headers=headers)
+            response_json.raise_for_status()
+            superjob_api_response = response_json.json()
+            is_more = superjob_api_response["more"]
+            for vacancy in superjob_api_response["objects"]:
                 salary_from = vacancy["payment_from"]
                 salary_to = vacancy["payment_to"]
                 language_salaries.append(
@@ -39,7 +39,7 @@ def count_vacancy_salary(url, secret_token):
         average_salary = sum(language_salaries) // len(language_salaries)
 
         average_languages_salaries[language] = {
-            "vacancies_found": response_json["total"],
+            "vacancies_found": superjob_api_response["total"],
             "vacancies_processed": len(language_salaries),
             "average_salary": average_salary,
         }

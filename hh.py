@@ -17,10 +17,10 @@ def count_vacancy_salary(url):
                 "area": moscow_area_id,
                 "page": page
             }
-            response = requests.get(url, params=params)
-            response.raise_for_status()
-            response_json = response.json()
-            for vacancy in response_json["items"]:
+            response_json = requests.get(url, params=params)
+            response_json.raise_for_status()
+            hh_api_response = response_json.json()
+            for vacancy in hh_api_response["items"]:
                 if vacancy["salary"] is None:
                     continue
                 salary_to = vacancy["salary"]["to"]
@@ -35,7 +35,7 @@ def count_vacancy_salary(url):
         print(average_salary)
 
         average_languages_salaries[language] = {
-            "vacancies_found": response_json["found"],
+            "vacancies_found": hh_api_response["found"],
             "vacancies_processed": len(language_salaries),
             "average_salary": average_salary,
         }
