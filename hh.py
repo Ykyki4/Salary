@@ -1,37 +1,49 @@
 from helpers import *
 
 
-def vacanci_counter(url):
-    vacanci_info = {}
+def counter_vacancy_salary(url):
+    moscow_area_id = 1
+    average_languages_salaries = {}
     page_num = 99
     languages = ["Python", "Java", "JavaScript", "C++", "C#", "1C", "C"]
     for language in languages:
-        vacanci_salary_list = []
+        language_salaries = []
         average_salary = 0
         page = 0
         while page < page_num:
             params = {
                 "text": f"Программист {language}",
-                "area": 1,
+                "area": moscow_area_id,
                 "page": page
             }
-            for vacanci in requester(params, url)["items"]:
-                if vacanci["salary"] is None:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            response_json = response.json()
+            for vacancy in response_json["items"]:
+                if vacancy["salary"] is None:
                     continue
-                vacanci_salary_list.append(predict_rub_salary(is_hh, vacanci))
+                salary_to = vacancy["salary"]["to"]
+                salary_from = vacancy["salary"]["from"]
+                language_salaries.append(
+                    predict_rub_salary(salary_from=salary_from, salary_to=salary_to))
             page += 1
-            average_salary = sum(vacanci_salary_list) // len(vacanci_salary_list)
+            print(language_salaries)
+        if len(language_salaries) == 0:
+            continue
+        average_salary = sum(language_salaries) // len(language_salaries)
+        print(average_salary)
 
-        vacanci_info[language] = {
-            "vacancies_found": requester(params, url)["found"],
-            "vacancies_processed": len(vacanci_salary_list),
-            "average_salary": average_salary}
+        average_languages_salaries[language] = {
+            "vacancies_found": response_json["found"],
+            "vacancies_processed": len(language_salaries),
+            "average_salary": average_salary,
+        }
 
-    return vacanci_info
+    return average_languages_salaries
 
 
 if __name__ == "__main__":
     title = "HeadHunter Moscow"
     is_hh = True
     url = "https://api.hh.ru/vacancies"
-    print(tableter(vacanci_counter(url), title))
+    print(maker_tablet(counter_vacancy_salary(url), title))
