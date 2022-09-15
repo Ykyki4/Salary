@@ -15,9 +15,9 @@ def make_table(vacancies_salary, title):
 
 
 def predict_rub_salary(salary_from, salary_to):
-    if salary_from is None:
+    if not salary_from:
         return salary_to * 0.8
-    elif salary_to is None:
+    elif not salary_to:
         return salary_from * 1.2
     else:
         return (salary_from + salary_to) / 2
