@@ -17,9 +17,9 @@ def count_vacancy_salary(url):
                 "area": moscow_area_id,
                 "page": page
             }
-            response_json = requests.get(url, params=params)
-            response_json.raise_for_status()
-            hh_api_response = response_json.json()
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            hh_api_response = response.json()
             for vacancy in hh_api_response["items"]:
                 if vacancy["salary"]:
                     salary_to = vacancy["salary"]["to"]

@@ -25,9 +25,9 @@ def count_vacancy_salary(url, secret_token):
                         "page": page
                     }
             page += 1
-            response_json = requests.get(url, params=params, headers=headers)
-            response_json.raise_for_status()
-            superjob_api_response = response_json.json()
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            superjob_api_response = response.json()
             is_more = superjob_api_response["more"]
             for vacancy in superjob_api_response["objects"]:
                 salary_from = vacancy["payment_from"]
