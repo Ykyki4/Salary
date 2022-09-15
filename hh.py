@@ -1,8 +1,8 @@
-from helpers import predict_rub_salary, maker_tablet
+from helpers import predict_rub_salary, make_tablet
 import requests
 
 
-def counter_vacancy_salary(url):
+def count_vacancy_salary(url):
     moscow_area_id = 1
     average_languages_salaries = {}
     page_num = 99
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     title = "HeadHunter Moscow"
     is_hh = True
     url = "https://api.hh.ru/vacancies"
-    print(maker_tablet(counter_vacancy_salary(url), title))
+    print(make_tablet(count_vacancy_salary(url), title))

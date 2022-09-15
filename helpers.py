@@ -1,8 +1,7 @@
-import requests
 from terminaltables import AsciiTable
 
 
-def maker_tablet(vacancies_salary, title):
+def make_tablet(vacancies_salary, title):
     vacancy_salary_table = [
         ["Язык программирования", "Вакансий найдено", "Вакансий обработано", "Средняя зарплата"]
     ]
