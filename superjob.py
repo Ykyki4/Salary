@@ -1,6 +1,7 @@
-from helpers import *
+from helpers import maker_tablet, predict_rub_salary
 from dotenv import load_dotenv
 import os
+import requests
 
 
 def counter_vacancy_salary(url, secret_token):

@@ -1,4 +1,5 @@
-from helpers import *
+from helpers import predict_rub_salary, maker_tablet
+import requests
 
 
 def counter_vacancy_salary(url):
