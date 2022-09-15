@@ -1,4 +1,4 @@
-from helpers import predict_rub_salary, make_tablet
+from helpers import predict_rub_salary, make_table
 import requests
 
 
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     title = "HeadHunter Moscow"
     is_hh = True
     url = "https://api.hh.ru/vacancies"
-    print(make_tablet(count_vacancy_salary(url), title))
+    print(make_table(count_vacancy_salary(url), title))

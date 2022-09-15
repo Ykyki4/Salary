@@ -1,4 +1,4 @@
-from helpers import make_tablet, predict_rub_salary
+from helpers import make_table, predict_rub_salary
 from dotenv import load_dotenv
 import os
 import requests
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     url = "https://api.superjob.ru/2.0/vacancies/"
     title = "Superjob"
     is_hh = False
-    print(make_tablet(count_vacancy_salary(url, secret_token), title))
+    print(make_table(count_vacancy_salary(url, secret_token), title))
